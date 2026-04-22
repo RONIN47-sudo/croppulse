@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>About - CropPulse</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f7fa;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 60px;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            font-weight: 600;
+            font-size: 20px;
+        }
+
+        .nav-center {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-center a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            padding: 6px 14px;
+            border-radius: 20px;
+        }
+
+        .nav-center a.active {
+            background: #e6f0ff;
+            color: #2c7be5;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .nav-right a {
+            text-decoration: none;
+            color: #555;
+        }
+
+        .register-btn {
+            padding: 6px 12px;
+            background: black;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        /* HERO */
+        .about-hero {
+            text-align: center;
+            padding: 100px 20px 120px;
+            background: linear-gradient(135deg, #2c7be5, #1a5edb);
+            color: white;
+        }
+
+        .about-hero h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .about-hero p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        /* CONTENT */
+        .content {
+            max-width: 800px;
+            margin: -60px auto 60px;
+            background: white;
+            padding: 40px;
+            border-radius: 14px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+
+        .section {
+            margin-bottom: 35px;
+        }
+
+        .section h2 {
+            margin-bottom: 10px;
+        }
+
+        .section p {
+            color: #555;
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        .nav-center a:hover {
+    background: #f0f2f5;
+}
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <div class="logo">CropPulse</div>
+
+    <div class="nav-center">
+        <a href="/">Home</a>
+        <a href="/about.html" class="active">About</a>
+    </div>
+
+    <div class="nav-right">
+        <a href="/login.html">Login</a>
+        <a href="/register.html">
+            <button class="register-btn">Register</button>
+        </a>
+    </div>
+</div>
+
+<!-- HERO -->
+<div class="about-hero">
+    <h1>About CropPulse</h1>
+    <p>Empowering farmers with real-time crop price insights</p>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+    <div class="section">
+        <h2>Our Mission</h2>
+        <p>
+            CropPulse aims to provide farmers with quick and reliable access to crop price data,
+            helping them make better decisions in a fast-moving market environment.
+        </p>
+    </div>
+
+    <div class="section">
+        <h2>What We Do</h2>
+        <p>
+            The platform allows users to check crop prices instantly through a simple interface.
+            It eliminates delays and makes important market information accessible anytime.
+        </p>
+    </div>
+
+    <div class="section">
+        <h2>Future Vision</h2>
+        <p>
+            In a real-world scenario, CropPulse would be powered by a scalable cloud infrastructure
+            capable of handling thousands of simultaneous users, ensuring high availability and performance.
+        </p>
+    </div>
+
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const navRight = document.querySelector(".nav-right");
+    const isLoggedIn = localStorage.getItem("loggedIn");
+
+    if (isLoggedIn) {
+        navRight.innerHTML = `
+            <span>Welcome, User</span>
+            <button onclick="logout()">Logout</button>
+        `;
+    }
+});
+
+function logout() {
+    localStorage.removeItem("loggedIn");
+    window.location.href = "/";
+}
+</script>
+</body>
+</html>

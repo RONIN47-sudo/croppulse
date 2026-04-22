@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CropPulse</title>
+
+    <style>
+       body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f5f7fa;
+}
+
+/* ================= NAVBAR ================= */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 60px;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.logo {
+    font-weight: 600;
+    font-size: 20px;
+}
+
+/* center nav (Home, About) */
+.nav-center {
+    display: flex;
+    gap: 25px;
+}
+
+.nav-center a {
+    text-decoration: none;
+    color: #555;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 20px;
+    transition: all 0.2s ease;
+}
+
+.nav-center a:hover {
+    background: #f0f2f5;
+}
+
+.nav-center a.active {
+    background: #e6f0ff;
+    color: #2c7be5;
+}
+
+/* right nav (Login/Register/Logout) */
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.nav-right a {
+    text-decoration: none;
+    color: #555;
+}
+
+/* register button */
+.register-btn {
+    padding: 6px 12px;
+    background: black;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+/* logout button */
+.nav-right button {
+    padding: 6px 12px;
+    background: #000000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* ================= HERO ================= */
+.hero {
+    text-align: center;
+    padding: 120px 20px 140px;
+    background: linear-gradient(135deg, #2c7be5, #1a5edb);
+    color: white;
+    position: relative;
+}
+
+.hero h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 18px;
+    opacity: 0.9;
+}
+
+/* curved bottom */
+.hero::after {
+    content: "";
+    position: absolute;
+    bottom: -40px;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: #f5f7fa;
+    border-top-left-radius: 50% 100%;
+    border-top-right-radius: 50% 100%;
+}
+
+/* ================= SEARCH ================= */
+.search-box {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.search-box select {
+    padding: 12px 15px;
+    width: 280px;
+    border-radius: 25px;
+    border: none;
+    outline: none;
+}
+
+.search-box button {
+    padding: 12px 20px;
+    border-radius: 25px;
+    border: none;
+    background: white;
+    color: #2c7be5;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.search-box button:hover {
+    background: #eaeaea;
+}
+
+/* ================= RESULT ================= */
+.result-box {
+    margin-top: 25px;
+    display: inline-block;
+    padding: 15px 25px;
+    border-radius: 10px;
+    background: white;
+    color: #333;
+    font-weight: 500;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    min-width: 250px;
+}
+
+.success {
+    border-left: 5px solid #28a745;
+}
+
+.error {
+    border-left: 5px solid #dc3545;
+}
+
+/* ================= FEATURES ================= */
+.features {
+    padding: 100px 20px 70px;
+    text-align: center;
+    margin-top: -40px;
+}
+
+.features h2 {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.cards {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background: white;
+    padding: 30px 25px;
+    border-radius: 14px;
+    width: 230px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    transition: all 0.25s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card h3 {
+    margin-bottom: 10px;
+}
+    </style>
+</head>
+
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+    <div class="logo">CropPulse</div>
+
+    <div class="nav-center">
+        <a href="/" class="active">Home</a>
+        <a href="/about.html">About</a>
+    </div>
+
+    <div class="nav-right">
+        <a href="/login.html">Login</a>
+        <a href="/register.html">
+            <button class="register-btn">Register</button>
+        </a>
+    </div>
+</div>
+
+<!-- Hero -->
+<div class="hero">
+    <h1>Check Crop Prices Instantly</h1>
+    <p>Get real-time crop prices and stay updated with market trends</p>
+
+    <div class="search-box">
+       <select id="cropInput">
+    <option value="">Select a crop</option>
+    <option value="wheat">Wheat</option>
+    <option value="rice">Rice</option>
+    <option value="maize">Maize</option>
+    <option value="barley">Barley</option>
+    <option value="sugarcane">Sugarcane</option>
+</select>
+        <button onclick="getPrice()">Search</button>
+    </div>
+
+    <div id="result" class="result-box"></div>
+</div>
+
+<!-- Features -->
+<div class="features">
+    <h2>How CropPulse Helps You</h2>
+
+    <div class="cards">
+        <div class="card">
+            <h3>Real-Time Prices</h3>
+            <p>Instant access to crop market prices</p>
+        </div>
+
+        <div class="card">
+            <h3>Fast Search</h3>
+            <p>Quickly find prices for any crop</p>
+        </div>
+
+        <div class="card">
+            <h3>Reliable Data</h3>
+            <p>Accurate and consistent information</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    async function getPrice() {
+        let crop = document.getElementById('cropInput').value.trim().toLowerCase();
+        const resultEl = document.getElementById('result');
+
+        if (!crop) {
+            resultEl.innerText = "Please enter a crop name";
+            return;
+        }
+
+        resultEl.className = "result-box";
+resultEl.innerText = "Fetching price...";
+
+        try {
+            const response = await fetch(`/price/${crop}`);
+            const data = await response.json();
+
+            if (data.price) {
+    resultEl.className = "result-box success";
+
+    resultEl.innerHTML = `
+        <strong>${data.crop.toUpperCase()}</strong><br>
+        ₹${data.price} per quintal
+    `;
+} else {
+    resultEl.className = "result-box error";
+
+    resultEl.innerHTML = `<span style="color:#dc3545;">${data.message}</span>`;
+}
+        } catch (err) {
+    resultEl.className = "result-box error";
+    resultEl.innerText = "Something went wrong";
+}
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+    const input = document.getElementById("cropInput");
+
+    input.addEventListener("keypress", function (e) {
+        if (e.key === "Enter") {
+            getPrice();
+        }
+    });
+});
+
+function updateNavbar() {
+    const isLoggedIn = localStorage.getItem("loggedIn");
+    const nav = document.querySelector(".nav-links");
+
+    if (isLoggedIn) {
+        nav.innerHTML = `
+            <span>Welcome, User</span>
+            <button onclick="logout()">Logout</button>
+        `;
+    }
+}
+
+function logout() {
+    localStorage.removeItem("loggedIn");
+    window.location.reload();
+}
+
+document.addEventListener("DOMContentLoaded", updateNavbar);
+</script>
+
+</body>
+</html>
